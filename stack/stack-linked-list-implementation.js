@@ -44,10 +44,38 @@ class Stack {
   }
 }
 
-const aStack = new Stack();
+class CodingInterviewStack {
+  constructor() {
+    this.top = null;
+  }
+
+  push(value) {
+    const newNode = new Node(value);
+    newNode.next = this.top;
+    this.top = newNode;
+  }
+
+  pop() {
+    if (this.isEmpty()) throw new Error("this is empty");
+    const temp = this.top;
+    this.top = temp.next;
+    return temp.value;
+  }
+
+  peek() {
+    if (this.isEmpty()) throw new Error("this is empty");
+    return this.top.value;
+  }
+
+  isEmpty() {
+    return this.top === null;
+  }
+}
+const aStack = new CodingInterviewStack();
+aStack.push(1);
+aStack.push(2);
 aStack.push(3);
-aStack.push(4);
 
 console.log(aStack.pop());
-console.log(aStack.pop());
-console.log(aStack);
+console.log(aStack.peek());
+console.log(aStack.isEmpty());
