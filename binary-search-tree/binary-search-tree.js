@@ -49,13 +49,42 @@
         this.insertRight(value, parent.right);
       }
     }
+
+    insertIteratively(value) {
+      const nodeInserted = new Node(value);
+      if (!this.root) {
+        this.root = nodeInserted;
+        return;
+      }
+      let currentRoot = this.root;
+      let flag = true;
+      while (flag) {
+        if (value > currentRoot.value) {
+          if (!currentRoot.right) {
+            currentRoot.right = nodeInserted;
+            flag = false;
+          } else {
+            currentRoot = currentRoot.right;
+          }
+        } else {
+          if (!currentRoot.left) {
+            currentRoot.left = nodeInserted;
+            flag = false;
+          } else {
+            currentRoot = currentRoot.left;
+          }
+        }
+      }
+    }
   }
+  const myIterateBST = new BST();
 
-  const myBST = new BST();
-
-  myBST.insert(4);
-  myBST.insert(3);
-  myBST.insert(5);
-  myBST.insert(7);
-  console.log(myBST.root.right);
+  myIterateBST.insertIteratively(5);
+  myIterateBST.insertIteratively(3);
+  myIterateBST.insertIteratively(6);
+  myIterateBST.insertIteratively(7);
+  myIterateBST.insertIteratively(2);
+  myIterateBST.insertIteratively(4);
+  myIterateBST.insert(6.2);
+  console.log(myIterateBST);
 }
