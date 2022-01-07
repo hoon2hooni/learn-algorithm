@@ -8,46 +8,26 @@
   }
 
   class BST {
-    constructor(value) {
+    constructor() {
       this.root = null;
     }
 
-    insert(value) {
+    insert(value, node = this.root) {
       if (this.root === null) {
         this.root = new Node(value);
         return;
       }
 
-      if (value <= this.root.value) {
-        this.insertLeft(value, this.root);
-      } else {
-        this.insertRight(value, this.root);
-      }
-    }
-
-    insertLeft(value, parent) {
-      if (parent.left === null) {
-        parent.left = new Node(value);
-        return;
-      }
-      if (value <= parent.left.value) {
-        this.insertLeft(value, parent.left);
-      } else {
-        this.insertRight(value, parent.left);
-      }
-    }
-
-    insertRight(value, parent) {
-      if (parent.right === null) {
-        parent.right = new Node(value);
-        return;
+      if (node === null) {
+        return new Node(value);
       }
 
-      if (value <= parent.right.value) {
-        this.insertLeft(value, parent.right);
+      if (value <= node.value) {
+        node.left = this.insert(value, node.left);
       } else {
-        this.insertRight(value, parent.right);
+        node.right = this.insert(value, node.right);
       }
+      return node;
     }
 
     insertIteratively(value) {
@@ -77,14 +57,15 @@
       }
     }
   }
-  const myIterateBST = new BST();
+  const myBST = new BST();
+  myBST.insert(5);
+  myBST.insert(3);
+  myBST.insert(4);
+  myBST.insert(2);
+  myBST.insert(1);
+  myBST.insert(7);
+  myBST.insert(8);
+  myBST.insert(6);
 
-  myIterateBST.insertIteratively(5);
-  myIterateBST.insertIteratively(3);
-  myIterateBST.insertIteratively(6);
-  myIterateBST.insertIteratively(7);
-  myIterateBST.insertIteratively(2);
-  myIterateBST.insertIteratively(4);
-  myIterateBST.insert(6.2);
-  console.log(myIterateBST);
+  console.log(myBST);
 }
