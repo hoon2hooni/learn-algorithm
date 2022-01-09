@@ -7,6 +7,16 @@ class Node {
   }
 }
 
+class BinaryNode {
+  value: any;
+  left: null | BinaryNode;
+  right: null | BinaryNode;
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
 class Stack {
   top: null | Node;
   constructor() {
@@ -46,14 +56,12 @@ class Queue {
     const newNode = new Node(value);
     if (this.head === null) {
       this.head = newNode;
-      this.tail = newNode;
-      return;
     }
     //노드 만들음
     if (this.tail) {
       this.tail.next = newNode;
-      this.tail = this.tail.next;
     }
+    this.tail = newNode;
   }
 
   dequeue(): any {
@@ -68,4 +76,30 @@ class Queue {
     return currentNode.value;
   }
 }
-export { Stack, Queue };
+
+class BinarySearchTree {
+  root: null | BinaryNode;
+  constructor() {
+    this.root = null;
+  }
+  insert(value, node: BinaryNode | null = this.root): any {
+    const newBinaryNode = new BinaryNode(value);
+    //첫 시작일 때
+    if (this.root === null) {
+      this.root = newBinaryNode;
+      return;
+    }
+
+    if (node === null) {
+      return newBinaryNode;
+    }
+
+    if (value <= node.value) {
+      node.left = this.insert(value, node.left);
+    } else {
+      node.right = this.insert(value, node.right);
+    }
+    return node;
+  }
+}
+export { Stack, Queue, BinarySearchTree };
