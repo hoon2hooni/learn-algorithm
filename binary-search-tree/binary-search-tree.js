@@ -56,6 +56,22 @@
         }
       }
     }
+
+    search(value, node = this.root) {
+      if (this.root === null) {
+        throw new Error("this is empty binary search tree");
+      }
+      if (node === null) {
+        return false;
+      }
+      if (value < node.value) {
+        return this.search(value, node.left);
+      } else if (value > node.value) {
+        return this.search(value, node.right);
+      } else {
+        return true;
+      }
+    }
   }
   const myBST = new BST();
   myBST.insert(5);
@@ -66,6 +82,5 @@
   myBST.insert(7);
   myBST.insert(8);
   myBST.insert(6);
-
-  console.log(myBST);
+  console.log(myBST.search(6));
 }
