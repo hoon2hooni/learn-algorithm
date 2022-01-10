@@ -72,7 +72,34 @@
         return true;
       }
     }
+
+    saerchIteratively(value) {
+      if (!this.root) {
+        throw new Error("this is empty binary search tree");
+      }
+
+      let node = this.root;
+
+      while (true) {
+        if (value > node.value) {
+          if (node.right) {
+            node = node.right;
+          } else {
+            return false;
+          }
+        } else if (value < node.value) {
+          if (node.left) {
+            node = node.left;
+          } else {
+            return false;
+          }
+        } else {
+          return true;
+        }
+      }
+    }
   }
+
   const myBST = new BST();
   myBST.insert(5);
   myBST.insert(3);
@@ -82,5 +109,5 @@
   myBST.insert(7);
   myBST.insert(8);
   myBST.insert(6);
-  console.log(myBST.search(6));
+  console.log("this is", myBST.saerchIteratively(1.2));
 }
