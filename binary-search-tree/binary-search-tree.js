@@ -78,25 +78,18 @@
         throw new Error("this is empty binary search tree");
       }
 
-      let node = this.root;
-
-      while (true) {
-        if (value > node.value) {
-          if (node.right) {
-            node = node.right;
-          } else {
-            return false;
-          }
-        } else if (value < node.value) {
-          if (node.left) {
-            node = node.left;
-          } else {
-            return false;
-          }
+      let current = this.root;
+      let found = false;
+      while (current && !found) {
+        if (value > current.value) {
+          current = current.right;
+        } else if (value < current.value) {
+          current = current.left;
         } else {
           return true;
         }
       }
+      return found;
     }
   }
 
@@ -109,5 +102,5 @@
   myBST.insert(7);
   myBST.insert(8);
   myBST.insert(6);
-  console.log("this is", myBST.saerchIteratively(1.2));
+  console.log("this is", myBST.saerchIteratively(6));
 }
