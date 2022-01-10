@@ -10,6 +10,7 @@
   class BST {
     constructor() {
       this.root = null;
+      this.dfsVisited = [];
     }
 
     insert(value, node = this.root) {
@@ -77,7 +78,6 @@
       if (!this.root) {
         throw new Error("this is empty binary search tree");
       }
-
       let current = this.root;
       let found = false;
       while (current && !found) {
@@ -91,16 +91,44 @@
       }
       return found;
     }
+
+    bfs() {
+      const queue = [];
+      const visited = [];
+      // breadth first search
+      // 방문 -> 뿌리 -> (뿌리 자식들 queue에 추가)
+      // 깊이 level 1 전부 탐색 ->
+      // 깊이 level 2 전부 탐색
+
+      if (!this.root === null) {
+        return visited;
+      }
+
+      queue.push(this.root);
+      //In javascript, empthy array is not falsy
+      while (queue.length) {
+        const currentNode = queue.shift();
+        visited.push(currentNode);
+        if (currentNode.left) queue.push(currentNode.left);
+        if (currentNode.right) queue.push(currentNode.right);
+      }
+      return visited;
+    }
+
+    dfs(node = this.root) {
+      if (!this.root) {
+        return this.dfsVisited;
+      }
+      this.dfsVisited.push(node.value);
+      if (node.left) this.dfs(node.left);
+      if (node.right) this.dfs(node.right);
+    }
   }
 
   const myBST = new BST();
-  myBST.insert(5);
-  myBST.insert(3);
-  myBST.insert(4);
-  myBST.insert(2);
-  myBST.insert(1);
-  myBST.insert(7);
-  myBST.insert(8);
-  myBST.insert(6);
+  const testArray = [5, 3, 7, 1, 4, 6, 8];
+  testArray.forEach((mem) => myBST.insert(mem));
+  myBST.dfs();
+  console.log(myBST.dfsVisited);
   console.log("this is", myBST.saerchIteratively(6));
 }
