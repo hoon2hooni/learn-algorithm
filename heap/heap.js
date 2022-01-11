@@ -9,24 +9,36 @@ class MaxBinaryHeap {
   // * 부모보다 크면 올린다 *
   // * 안되면 반복 멈춘다
   insert(value) {
-    let nextIndex = this.values.length;
-    this.values[nextIndex] = value;
-    if (!nextIndex) {
+    let insertedIndex = this.values.length;
+
+    this.values[insertedIndex] = value;
+    if (!insertedIndex) {
       return;
     }
-    let currentParent;
-    while (true) {
-      currentParent = parseInt((nextIndex - 1) / 2);
-      if (this.values[currentParent] > value) {
-        break;
-      }
-      this.swap(currentParent, nextIndex);
-      nextIndex = currentParent;
-      if (nextIndex === 0) {
-        break;
-      }
+
+    while (insertedIndex) {
+      let currentParentIndex = parseInt((insertedIndex - 1) / 2);
+      if (this.values[currentParentIndex] > value) break;
+      this.swap(currentParentIndex, insertedIndex);
+      insertedIndex = currentParentIndex;
     }
     return;
+  }
+  insertFromUdemy(value) {
+    this.values.push(value);
+    this.bubbleUp();
+  }
+
+  bubbleUp() {
+    let idx = this.values.length - 1;
+    const element = this.values[idx];
+    while (idx) {
+      let parentIdx = Math.floor((idx - 1) / 2);
+      let parent = this.values[parentIdx];
+      if (element < parent) break;
+      this.swap(idx, parentIdx);
+      idx = parentIdx;
+    }
   }
 
   // * 내려간 자식은 그 아래 자식들 보다 무조건 *
