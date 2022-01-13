@@ -9,17 +9,17 @@ class PriorityMinQueue {
   constructor() {
     this.values = [];
   }
-  insert(node) {
+  enqueue(node) {
     this.values.push(node);
     this.bubbleUp();
   }
   //올려 올려 올려
   bubbleUp() {
     let idx = this.values.length - 1;
+    let currentNode = this.values[idx];
     while (idx) {
       let parentNodeIdx = Math.floor((idx - 1) / 2);
       let parentNode = this.values[parentNodeIdx];
-      let currentNode = this.values[idx];
       if (currentNode.priority > parentNode.priority) break;
       this.values[idx] = parentNode;
       this.values[parentNodeIdx] = currentNode;
@@ -28,10 +28,14 @@ class PriorityMinQueue {
     return;
   }
 
-  extract() {
-    const returnNode = this.values[0];
-    this.sinkDownUdemy();
-    return returnNode;
+  dequeue() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDownUdemy();
+    }
+    return min;
   }
 
   sinkDown() {
@@ -79,10 +83,9 @@ class PriorityMinQueue {
 
   sinkDownUdemy() {
     let idx = 0;
-    let limitIdx = this.values.length - 1;
-    this.values[idx] = this.values.pop();
+    let limitIdx = this.values.length;
+    let currentNode = this.values[idx];
     while (true) {
-      let currentNode = this.values[idx];
       let leftChildIdx = 2 * idx + 1;
       let rightChildIdx = 2 * idx + 2;
       let swap = null;
