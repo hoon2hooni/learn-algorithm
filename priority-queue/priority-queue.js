@@ -17,12 +17,12 @@ class PriorityMinQueue {
   bubbleUp() {
     let idx = this.values.length - 1;
     while (idx) {
-      parentNodeIdx = Math.floor((idx - 1) / 2);
-      parentNode = this.values[parentIdx];
-      currentNode = this.values[idx];
-      if (currentNode.priority > parentPriority.priority) break;
+      let parentNodeIdx = Math.floor((idx - 1) / 2);
+      let parentNode = this.values[parentNodeIdx];
+      let currentNode = this.values[idx];
+      if (currentNode.priority > parentNode.priority) break;
       this.values[idx] = parentNode;
-      this.values[parentIdx] = currentNode;
+      this.values[parentNodeIdx] = currentNode;
       idx = parentNodeIdx;
     }
     return;
@@ -30,7 +30,7 @@ class PriorityMinQueue {
 
   extract() {
     const returnNode = this.values[0];
-    this.sinkDown();
+    this.sinkDownUdemy();
     return returnNode;
   }
 
@@ -39,7 +39,7 @@ class PriorityMinQueue {
     let limitIdx = this.values.length - 1;
     while (true) {
       this.values[0] = this.values.pop();
-      currentNode = this.values[idx];
+      let currentNode = this.values[idx];
       let leftChildIdx = 2 * idx + 1;
       let rightChildIdx = 2 * idx + 2;
       //[1, 3, 2, 6, 4, 5];
@@ -80,6 +80,7 @@ class PriorityMinQueue {
   sinkDownUdemy() {
     let idx = 0;
     let limitIdx = this.values.length - 1;
+    this.values[idx] = this.values.pop();
     while (true) {
       let currentNode = this.values[idx];
       let leftChildIdx = 2 * idx + 1;
