@@ -9,5 +9,8 @@ describe("test graph", () => {
     expect(myGraph.adjacentList.a).toEqual(["b"]);
     myGraph.addTwoVertexes("c", "b");
     expect(myGraph.adjacentList.b).toEqual(["a", "c"]);
+    myGraph.removeVertex("a");
+    expect(myGraph.adjacentList.b).toEqual(["c"]);
+    expect(myGraph.adjacentList.hasOwnProperty("a")).toBe(false);
   });
 });
