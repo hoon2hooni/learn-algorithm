@@ -49,6 +49,14 @@ class Graph {
       {}
     );
   }
+
+  removeVertexUdemy(vertex) {
+    while (this.adjacentList[vertex].length) {
+      const adjacentVertex = this.adjacentList[vertex].pop();
+      this.removeEdge(adjacentVertex, vertex);
+    }
+    delete this.adjacentList[vertex];
+  }
 }
 
 export { Graph };
