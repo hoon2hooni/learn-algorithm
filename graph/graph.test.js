@@ -1,7 +1,23 @@
 import { Graph } from "./graph";
 
 describe("test graph", () => {
-  const myGraph = new Graph();
+  let myGraph;
+  const vertexes = ["A", "B", "C", "D", "E"];
+  const edges = [
+    ["A", "B"],
+    ["A", "C"],
+    ["B", "D"],
+    ["C", "E"],
+    ["D", "E"],
+    ["D", "F"],
+    ["E", "F"],
+  ];
+  const dfsAnswer = ["A", "B", "D", "E", "C", "F"];
+  beforeEach(() => {
+    myGraph = new Graph();
+    console.log("my graph 초기화");
+  });
+
   it("test connect two vertex", () => {
     myGraph.addTwoVertexes("a", "b");
     expect(myGraph.adjacentList.a).toEqual(["b"]);
@@ -12,5 +28,13 @@ describe("test graph", () => {
     myGraph.removeVertexUdemy("a");
     expect(myGraph.adjacentList.b).toEqual(["c"]);
     expect(myGraph.adjacentList.hasOwnProperty("a")).toBe(false);
+  });
+
+  it("second DFS TEST", () => {
+    vertexes.forEach((v) => myGraph.addVertex(v));
+    edges.forEach((edge) => {
+      myGraph.addTwoVertexes(edge[0], edge[1]);
+    });
+    expect(myGraph.dfs("A")).toEqual(dfsAnswer);
   });
 });

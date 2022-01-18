@@ -1,6 +1,8 @@
 class Graph {
   constructor() {
     this.adjacentList = {};
+    this.visited = [];
+    this.checkVisited = {};
   }
   //without solution
   addTwoVertexes(vertexA, vertexB) {
@@ -18,7 +20,7 @@ class Graph {
   }
   //udemy solution
   addVertex(vertex) {
-    if (!this.adjacentList[vertex]) this.adjacentList.vertex = [];
+    if (!this.adjacentList[vertex]) this.adjacentList[vertex] = [];
   }
 
   addAnEdge(v1, v2) {
@@ -56,6 +58,20 @@ class Graph {
       this.removeEdge(adjacentVertex, vertex);
     }
     delete this.adjacentList[vertex];
+  }
+
+  dfs(vertex) {
+    if (!this.adjacentList[vertex].length) {
+      return;
+    }
+    this.visited.push(vertex);
+    this.checkVisited[vertex] = true;
+    for (const v of this.adjacentList[vertex]) {
+      if (!this.checkVisited[v]) {
+        this.dfs(v);
+      }
+    }
+    return this.visited;
   }
 }
 
