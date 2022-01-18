@@ -90,6 +90,28 @@ class Graph {
     })(start);
     return result;
   }
+  dfsIteratively(start) {
+    const stack = [];
+    const result = [];
+    const visited = {};
+    const adjacentList = this.adjacentList;
+    stack.push(start);
+    while (stack.length > 0) {
+      const currentVertex = stack.pop();
+
+      if (!visited[currentVertex]) {
+        result.push(currentVertex);
+        visited[currentVertex] = true;
+      }
+
+      adjacentList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 export { Graph };
