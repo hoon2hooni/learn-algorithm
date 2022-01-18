@@ -60,18 +60,35 @@ class Graph {
     delete this.adjacentList[vertex];
   }
 
-  dfs(vertex) {
-    if (!this.adjacentList[vertex].length) {
+  dfs(start) {
+    if (!this.adjacentList[start].length) {
       return;
     }
-    this.visited.push(vertex);
-    this.checkVisited[vertex] = true;
-    for (const v of this.adjacentList[vertex]) {
-      if (!this.checkVisited[v]) {
-        this.dfs(v);
+    this.visited.push(start);
+    this.checkVisited[start] = true;
+    for (const adjacentVertex of this.adjacentList[start]) {
+      if (!this.checkVisited[adjacentVertex]) {
+        this.dfs(adjacentVertex);
       }
     }
     return this.visited;
+  }
+
+  udemySolution(start) {
+    const result = [];
+    const visited = {};
+    const adjacentList = this.adjacentList;
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacentList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          dfs(neighbor);
+        }
+      });
+    })(start);
+    return result;
   }
 }
 

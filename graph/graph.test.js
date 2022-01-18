@@ -36,5 +36,6 @@ describe("test graph", () => {
       myGraph.addTwoVertexes(edge[0], edge[1]);
     });
     expect(myGraph.dfs("A")).toEqual(dfsAnswer);
+    expect(myGraph.udemySolution("A")).toEqual(dfsAnswer);
   });
 });
