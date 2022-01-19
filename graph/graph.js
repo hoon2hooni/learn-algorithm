@@ -148,6 +148,29 @@ class Graph {
     }
     return result;
   }
+  bfsWithLength(start, destination) {
+    const queue = [start];
+    const result = {};
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+    result[start] = 0;
+    //즉 우리는 처음 초기에 0으로 시작한다.
+    while (queue.length) {
+      currentVertex = queue.shift();
+      for (const neighbor of this.adjacentList[currentVertex]) {
+        if (!visited[neighbor]) {
+          result[neighbor] = (result[currentVertex] || 0) + 1;
+          queue.push(neighbor);
+          visited[neighbor] = true;
+          if (neighbor === destination) {
+            return result[neighbor];
+          }
+        }
+      }
+    }
+    return false;
+  }
 }
 
 export { Graph };

@@ -41,5 +41,6 @@ describe("test graph", () => {
     expect(myGraph.udemySolution("A")).toEqual(dfsAnswer);
     expect(myGraph.dfsIterativelyUdemy("A")).toEqual(dfsAnswerIteratively);
     expect(myGraph.bfs("A")).toEqual(bfsAnswer);
+    expect(myGraph.bfsWithLength("A", "D")).toBe(2);
   });
 });
