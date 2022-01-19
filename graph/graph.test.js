@@ -38,6 +38,6 @@ describe("test graph", () => {
     });
     expect(myGraph.dfs("A")).toEqual(dfsAnswer);
     expect(myGraph.udemySolution("A")).toEqual(dfsAnswer);
-    expect(myGraph.dfsIteratively("A")).toEqual(dfsAnswerIteratively);
+    expect(myGraph.dfsIterativelyUdemy("A")).toEqual(dfsAnswerIteratively);
   });
 });
