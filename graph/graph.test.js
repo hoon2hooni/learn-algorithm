@@ -14,6 +14,7 @@ describe("test graph", () => {
   ];
   const dfsAnswer = ["A", "B", "D", "E", "C", "F"];
   const dfsAnswerIteratively = ["A", "C", "E", "F", "D", "B"];
+  const bfsAnswer = ["A", "B", "C", "D", "E", "F"];
   beforeEach(() => {
     myGraph = new Graph();
     console.log("my graph 초기화");
@@ -39,5 +40,6 @@ describe("test graph", () => {
     expect(myGraph.dfs("A")).toEqual(dfsAnswer);
     expect(myGraph.udemySolution("A")).toEqual(dfsAnswer);
     expect(myGraph.dfsIterativelyUdemy("A")).toEqual(dfsAnswerIteratively);
+    expect(myGraph.bfs("A")).toEqual(bfsAnswer);
   });
 });

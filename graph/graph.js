@@ -98,7 +98,6 @@ class Graph {
     stack.push(start);
     while (stack.length > 0) {
       const currentVertex = stack.pop();
-
       if (!visited[currentVertex]) {
         result.push(currentVertex);
         visited[currentVertex] = true;
@@ -107,6 +106,7 @@ class Graph {
       adjacentList[currentVertex].forEach((neighbor) => {
         if (!visited[neighbor]) {
           stack.push(neighbor);
+          visited[currentVertex] = true;
         }
       });
     }
@@ -125,6 +125,24 @@ class Graph {
         if (!visited[neighbor]) {
           visited[neighbor] = true;
           stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
+  bfs(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+      this.adjacentList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          queue.push(neighbor);
+          visited[neighbor] = true;
         }
       });
     }
