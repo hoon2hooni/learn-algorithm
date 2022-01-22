@@ -10,6 +10,7 @@ class WeightedGraph {
 
   addEdge(v1, v2, weight) {
     this.adjacentList[v1].push({ node: v2, weight });
-    this.adjacentList[v1].push({ node: v1, weight });
   }
 }
+
+export { WeightedGraph };
