@@ -1,8 +1,12 @@
-function fibonacci(n) {
-  if (n === 1 || n === 2) {
+function fibonacci(n, memo = new Map()) {
+  if (n <= 2) {
     return 1;
   }
-  const answer = fibonacci(n - 2) + fibonacci(n - 1);
+  if (memo.get(n)) {
+    return memo.get(n);
+  }
+  const answer = fibonacci(n - 2, memo) + fibonacci(n - 1, memo);
+  memo.set(n, answer);
   return answer;
 }
 
