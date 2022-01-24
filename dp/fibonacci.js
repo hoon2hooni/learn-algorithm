@@ -9,5 +9,12 @@ function fibonacci(n, memo = new Map()) {
   memo.set(n, answer);
   return answer;
 }
-
-export { fibonacci };
+function fibonacciBottomUp(n) {
+  if (n <= 2) return 1;
+  const fibNumbers = [0, 1, 1];
+  for (let i = 3; i <= n; i++) {
+    fibNumbers[i] = fibNumbers[i - 2] + fibNumbers[i - 1];
+  }
+  return fibNumbers[n];
+}
+export { fibonacci, fibonacciBottomUp };
