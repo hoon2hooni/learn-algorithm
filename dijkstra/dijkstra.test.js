@@ -50,6 +50,6 @@ describe("test Dijkstra", () => {
   const dijkstra = new Dijkstra(weightedGraph, weightObject);
 
   it("test shortest path", () => {
-    expect(dijkstra.findShortestLength("a", "f")).toBe(5);
+    expect(dijkstra.findShortestLength("a", "e")).toBe(6);
   });
 });
