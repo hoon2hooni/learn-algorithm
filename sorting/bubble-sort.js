@@ -1,22 +1,20 @@
+import { swap } from "./swap";
+
 function bubbleSort(arr) {
-  let flag = true;
+  let hasSwapped = true;
   for (let i = arr.length; i > 0; i--) {
-    if (!flag) {
+    if (!hasSwapped) {
       break;
     }
-    flag = false;
+    hasSwapped = false;
     for (let j = 0; j < i; j++) {
       if (arr[j] > arr[j + 1]) {
         swap(arr, j, j + 1);
-        flag = true;
+        hasSwapped = true;
       }
     }
   }
   return arr;
 }
-
-const swap = (arr, i, j) => {
-  [arr[j], arr[i]] = [arr[i], arr[j]];
-};
 
 export { bubbleSort };
