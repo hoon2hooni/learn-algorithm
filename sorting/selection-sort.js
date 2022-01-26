@@ -1,20 +1,18 @@
 import { swap } from "./swap";
 
 function selectionSort(arr) {
-  let minValue, minIdx;
+  let minIdx;
   for (let i = 0; i < arr.length; i++) {
-    minValue = Infinity;
+    minIdx = i;
     for (let j = i; j < arr.length; j++) {
-      if (arr[j] < minValue) {
+      if (arr[j] < arr[minIdx]) {
         minIdx = j;
-        minValue = arr[j];
       }
     }
     if (i !== minIdx) {
       swap(arr, i, minIdx);
     }
   }
-
   return arr;
 }
 export { selectionSort };
