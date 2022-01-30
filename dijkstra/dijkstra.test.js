@@ -1,6 +1,7 @@
 import { WeightedGraph } from "./weighted-graph";
 import { PriorityQueue } from "./simplePriorityQueue";
 import { Dijkstra } from "./dijkstra";
+import { WeightedGraph as UdemySolotion } from "./dijkstraSolution";
 
 const weightedGraph = new WeightedGraph();
 const vertexes = ["a", "b", "c", "d", "e", "f"];
@@ -51,5 +52,24 @@ describe("test Dijkstra", () => {
 
   it("test shortest path", () => {
     expect(dijkstra.findShortestLength("a", "e")).toBe(6);
+  });
+});
+
+describe("test Dijkstra from udemy solution", () => {
+  const weightedGraph = new UdemySolotion();
+  const vertexes = ["a", "b", "c", "d", "e", "f"];
+  vertexes.forEach((v) => weightedGraph.addVertex(v));
+
+  weightedGraph.addEdge("a", "b", 4);
+  weightedGraph.addEdge("a", "c", 2);
+  weightedGraph.addEdge("c", "d", 2);
+  weightedGraph.addEdge("b", "e", 3);
+  weightedGraph.addEdge("d", "e", 3);
+  weightedGraph.addEdge("c", "f", 4);
+  weightedGraph.addEdge("d", "f", 1);
+  weightedGraph.addEdge("f", "e", 1);
+
+  it("test shortest path", () => {
+    expect(weightedGraph.Dijkstra("a", "e")).toEqual(["a", "c", "d", "f", "e"]);
   });
 });
