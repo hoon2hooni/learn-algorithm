@@ -1,8 +1,4 @@
-function pivot(arr, start, end) {
-  if (start === end) {
-    return start;
-  }
-
+function pivot(arr, start = 0, end = arr.length - 1) {
   let pivotIndex = start + 1;
   let stdValue = arr[start];
   for (let j = pivotIndex; j <= end; j++) {
