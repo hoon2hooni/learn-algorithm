@@ -1,14 +1,13 @@
 import { pivot } from "./pivot";
 
-function quickSort(arr, start = 0, end = arr.length - 1) {
+function quickSort(arr, left = 0, right = arr.length - 1) {
   //quickSort
-  const p = pivot(arr, start, end);
-  if (p + 1 < end) {
-    quickSort(arr, p + 1, end);
+  if (left >= right) {
+    return;
   }
-  if (p - 1 > start) {
-    quickSort(arr, start, p - 1);
-  }
+  const p = pivot(arr, left, right);
+  quickSort(arr, p + 1, right);
+  quickSort(arr, left, p - 1);
   return arr;
 }
 export { quickSort };
