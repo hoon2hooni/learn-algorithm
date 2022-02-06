@@ -44,8 +44,6 @@ class WeightedGraph {
     }
     // as long as there is something to visit
     while (nodes.values.length) {
-      console.log(nodes);
-      console.log(distances);
       smallest = nodes.dequeue().val;
       if (smallest === finish) {
         //WE ARE DONE

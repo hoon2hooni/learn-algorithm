@@ -24,6 +24,7 @@ class MaxBinaryHeap {
     }
     return;
   }
+  
   insertFromUdemy(value) {
     this.values.push(value);
     this.bubbleUp();
