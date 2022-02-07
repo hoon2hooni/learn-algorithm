@@ -1,5 +1,5 @@
 import { getDigit, makeRadixBucket } from "./helper";
-import { radixSort } from "./radix-sort";
+import { radixSort } from "./solution/radix-sort";
 describe("test radix sort", () => {
   test("test helper method", () => {
     expect(getDigit(123, 1)).toBe(3);
